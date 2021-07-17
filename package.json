@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
+    "lint": "eslint . --ext .ts",
     "benchmark": "tsc && node dist/benchmark/index.js"
   },
   "author": "Markus Tremmel",

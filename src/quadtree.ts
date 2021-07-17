@@ -1,6 +1,6 @@
 import Geometry, {Envelope} from "./geometry";
 
-class IllegalArgumentError extends Error{
+export class IllegalArgumentError extends Error{
     constructor(private readonly _message: string) {
         super(_message);
         this.name = IllegalArgumentError.name;
@@ -33,7 +33,7 @@ export default class Quadtree<T extends Geometry>{
         return this._envelope;
     }
 
-    add(geometry: T){
+    add(geometry: T): void{
         if(!this._envelope.intersects(geometry.envelope())){
             throw new IllegalArgumentError("The specified geometry is not within the extent of the quadtree.");
         }

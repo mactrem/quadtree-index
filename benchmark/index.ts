@@ -1,6 +1,6 @@
 import {Envelope, Point} from "../src/geometry";
 import Quadtree from "../src/quadtree";
-const fs = require('fs');
+import fs from "fs";
 
 type Feature = { geometry: { coordinates: any[]; }; };
 
@@ -23,7 +23,7 @@ const points: Point[] = geoJson.features.flatMap((feature: Feature) => feature.g
 });
 
 function linearScan(points: Point[], envelope: Envelope): number{
-    let filteredPoints: Point[] = [];
+    const filteredPoints: Point[] = [];
     const start = process.hrtime();
 
     for(const point of points){

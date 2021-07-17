@@ -46,19 +46,19 @@ export class Point implements Geometry{
     constructor(private readonly _x: number, private readonly _y: number, private readonly _z = 0) {
     }
 
-    get x(){
+    get x(): number{
         return this._x;
     }
 
-    get y(){
+    get y(): number{
         return this._y;
     }
 
-    get z(){
+    get z(): number{
         return this._z;
     }
 
-    equals(other: Point){
+    equals(other: Point): boolean{
         return Math.abs(this._x - other.x) < Point.EPSILON && Math.abs(this._y - other.y) < Point.EPSILON && Math.abs(this._z - other.z) < Point.EPSILON;
     }
 

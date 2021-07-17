@@ -39,6 +39,6 @@ describe("Point", () => {
 
         expect(point.x).toBe(x);
         expect(point.y).toBe(y);
-        expect(point.z).toBe(undefined);
+        expect(point.z).toBe(0);
     });
 });

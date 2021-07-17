@@ -1,14 +1,9 @@
-import Quadtree from "../src/quadtree";
-import IllegalArgumentError from "../src/illegalArgumentError";
-import Geometry, {Envelope, Point} from "../src/geometry";
+import Quadtree, {IllegalArgumentError} from "../src/quadtree";
+import {Envelope, Point} from "../src/geometry";
 
-
+//TODO: refactor and improve unit tests
 describe("Quadtree", () => {
     const extent = new Envelope(1, 1, 80, 80);
-
-    it("can create instance", () => {
-        const quadtree = new Quadtree(extent);
-    });
 
     it("should return specified envelope", () => {
         const quadtree = new Quadtree(extent);
@@ -26,7 +21,7 @@ describe("Quadtree", () => {
     });
 
     it("should throw error if geometry is not within the extent of the quadtree", () => {
-        const point = new Point(12.88, 49.01);
+        const point = new Point(12.88, 82.01);
         const quadtree = new Quadtree(extent);
 
         expect(() => quadtree.add(point)).toThrow(IllegalArgumentError);
