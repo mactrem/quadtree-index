@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "benchmark": "tsc && node dist/benchmark/index.js"
   },
   "author": "Markus Tremmel",
   "license": "MIT",

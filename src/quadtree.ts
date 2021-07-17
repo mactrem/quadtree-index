@@ -1,6 +1,11 @@
 import IllegalArgumentError from "./illegalArgumentError";
 import Geometry, {Envelope} from "./geometry";
 
+/*
+* This Quadtree data structure is implemented as lossy index, meaning that the index may produce false matches
+* for geometries other than points e.g. LineString and Polygon, because it's only tested for spatial intersection
+* against the specified bounding box of the geometry.
+ * */
 export default class Quadtree<T extends Geometry>{
     private static readonly DEFAULT_CAPACITY = 16;
 
@@ -11,7 +16,6 @@ export default class Quadtree<T extends Geometry>{
     private se!: Quadtree<T> | null;
     protected isRootNode = true;
 
-    //TODO: make capacity static readonly
     constructor(private _envelope: Envelope, private readonly capacity = Quadtree.DEFAULT_CAPACITY) {
     }
 
@@ -43,15 +47,9 @@ export default class Quadtree<T extends Geometry>{
         }
     }
 
-    /*
-    * Lossy index, meaning that the index may produce false matches,
-    * because it's only tested for spatial intersection against the specified bounding box of the geometry.
-    * */
     find(bbox: Envelope): T[]{
         if(this.isLeafNode()){
-            //TODO: length check not needed
-            return this.geometries.length ?
-                this.geometries.filter(geometry => bbox.intersects(geometry.envelope())) : [];
+            return this.geometries.filter(geometry => bbox.intersects(geometry.envelope()));
         }
 
         const geometries: T[] = [];
@@ -113,7 +111,6 @@ export default class Quadtree<T extends Geometry>{
         this.se = new Quadtree(new Envelope(centerX, this.envelope.minY, this.envelope.maxX, centerY));
         [this.ne, this.nw, this.sw, this.se].forEach(node => node.isRootNode = false);
     }
-
 
     private shouldSubdivide(){
         return this.geometries.length > this.capacity;

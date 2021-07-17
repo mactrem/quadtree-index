@@ -1,7 +1,7 @@
 # quadtree-index
 
 Quadtree data structure for indexing 2D geospatial data.  
-Implemented as lossy index, meaning that the index may produce false matches,  
+Implemented as lossy index, meaning that the index may produce false matches for geometries other than points,  
 because it's only tested for spatial intersection against the specified bounding box of the geometry.
 
 ## API
@@ -9,7 +9,7 @@ because it's only tested for spatial intersection against the specified bounding
 #### new Quadtree(envelope, capacity)
 Creates an Quadtree index for the given bounding box.
 - `envelope`: Spatial extent of the Quadtree.
-- `capacity`: Number of Defaults to 16.
+- `capacity`: Defaults to 16.
 ```js
 const extent = new Envelope(12, 48, 13, 49);
 const quadtree = new Quadtree(extent);
@@ -26,7 +26,7 @@ quadtree.add(point)
 #### quadtree.find(envelope)
 Find all geometries in the Quadtree index which intersects with the given envelope.  
 This may produce false matches, because it's only tested for spatial intersection against the specified bounding box of the geometry.
-- `envelope`: Bounding box to test the intersection against
+- `envelope`: Bounding box to test the intersection against.
 ```js
 const extent = new Envelope(10, 10, 20, 20);
 const geometries = quadtree.find(extent);

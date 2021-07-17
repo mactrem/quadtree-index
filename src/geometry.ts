@@ -22,9 +22,9 @@ export class Envelope{
 
     intersects(envelope: Envelope): boolean{
         const vertices = [{x: this.minX, y: this.minY}, {x: this.maxX, y: this.minY},
-            {x: this.maxX, y: this.maxY}, {x: this.minY, y: this.maxY}]
+            {x: this.maxX, y: this.maxY}, {x: this.minX, y: this.maxY}]
         const otherVertices = [{x: envelope.minX, y: envelope.minY}, {x: envelope.maxX, y: envelope.minY},
-            {x: envelope.maxX, y: envelope.maxY}, {x: envelope.minY, y: envelope.maxY}]
+            {x: envelope.maxX, y: envelope.maxY}, {x: envelope.minX, y: envelope.maxY}]
 
         return otherVertices.some(vertex => this.pointInEnvelope(this, vertex)) || vertices.some(vertex => this.pointInEnvelope(envelope, vertex));
     }
