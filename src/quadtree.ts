@@ -1,9 +1,19 @@
-import IllegalArgumentError from "./illegalArgumentError";
 import Geometry, {Envelope} from "./geometry";
+
+class IllegalArgumentError extends Error{
+    constructor(private readonly _message: string) {
+        super(_message);
+        this.name = IllegalArgumentError.name;
+    }
+
+    get message(): string{
+        return this._message;
+    }
+}
 
 /*
 * This Quadtree data structure is implemented as lossy index, meaning that the index may produce false matches
-* for geometries other than points e.g. LineString and Polygon, because it's only tested for spatial intersection
+* for geometries other than Points e.g. LineStrings and Polygons, because it's only tested for spatial intersection
 * against the specified bounding box of the geometry.
  * */
 export default class Quadtree<T extends Geometry>{

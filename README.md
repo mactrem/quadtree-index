@@ -17,7 +17,7 @@ const quadtree = new Quadtree(extent);
 
 #### quadtree.add(geometry)
 Add a geometry to the index.
-- `geometry`: Geometry which has to implement a method `envelope`
+- `geometry`: Geometry which has to implement a method `envelope`.
 ```js
 const point = new Point(12.88, 49.01);
 quadtree.add(point)
